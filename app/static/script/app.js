@@ -5,6 +5,14 @@
     var app = {
         init: function () {
             routes.init();
+
+
+            let xhr = new XMLHttpRequest();
+            let url = "https://api.coinmarketcap.com/v1/ticker/";
+            xhr.open("GET", url, true);
+            xhr.send();
+            section.insert(xhr.response)
+            console.log(xhr.response);
         }
     }
 
@@ -28,6 +36,10 @@
 
             //Add active class to the page-link that you've clicked
             document.querySelector(route).classList.add('active');
+        },
+
+        insert: function(element){
+            console.log(element)
         }
     }
 
