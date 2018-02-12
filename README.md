@@ -63,6 +63,11 @@ Kollergorna is a beautifull site that doens't use a traditional layout. Also the
 2. Create an issue for Kevin
 3. create responsive menu
 4. Best practices
-
+5. Manage routes en states
+6. Get / Post data van/naar API
+7. Data manipuleren
+8. Data presenteren
+9. Web Worker implementeren (extra)
+10. Code review
 
 
