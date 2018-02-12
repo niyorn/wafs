@@ -1,3 +1,46 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul{
+    list-style-type: none;
+}
+
+nav{
+    display: flex;
+    flex-direction: column;
+}
+
+nav ul{
+    display: flex;
+}
+
+nav ul li{
+    display: flex;
+    width: 100%;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    padding: 0.5rem;
+    background-color: #F50057;
+    width: 100%;
+    min-width: 200px;
+    font-size: 1.4rem;
+    text-align: center;
+    transition: all 0.4s;
+}
+
+nav ul li a:hover{
+    transform: scale(1.2);
+}
+
+
+
+
 section{
     display: none;
 }
