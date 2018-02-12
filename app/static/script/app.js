@@ -22,7 +22,7 @@
     }
 
     var routes = {
-        init: function (data) {   
+        init: function (data) {
             this.routie(data);
         },
         routie(data) {
@@ -53,27 +53,26 @@
         insert: function (data) {
             let dataCoin = data.map(function (i) { //Map function thanks to Keving Wang
                 return {
-                    id : i.id,
+                    id: i.id,
                     rank: i.rank,
                     name: i.name,
                     price: i.price_usd,
                     percent_change_24h: i.percent_change_24h
-                }        
+                }
             });
 
-           var  directives = {
+            let directives = {
                 coin_id: {
-                  href: function(params) {                      
-                    return "index.html/detail/"+this.id
-                  },
-                  percent_change_24h: {
-                    class: function(params){
-                        console.log(i);
-                        return this.percent_change_24h
+                    href: function (params) {
+                        return "index.html/detail/" + this.id
+                    },
+                    percent_change_24h: {
+                        class: function (params) {
+                            return this.percent_change_24h
+                        }
                     }
-                  }
                 }
-              };
+            };
 
             Transparency.render(document.querySelector('#start div'), dataCoin, directives);
         }
