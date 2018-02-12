@@ -4,23 +4,35 @@
 
     var app = {
         init: function () {
-            routes.init();
-
-
             let xhr = new XMLHttpRequest();
             let url = "https://api.coinmarketcap.com/v1/ticker/";
             xhr.open("GET", url, true);
+            xhr.onload = function (e) {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        var data = JSON.parse(xhr.responseText);
+                        routes.init(data); //init route
+                    } else {
+                        console.error(xhr.statusText);
+                    }
+                }
+            };
             xhr.send();
-            section.insert(xhr.response)
-            console.log(xhr.response);
         }
     }
 
     var routes = {
-        init: function () {
-            window.addEventListener('hashchange', function () {
-                let hash = location.hash; //get hash without #
-                section.toggle(hash)
+        init: function (data) {   
+            this.routie(data);
+        },
+        routie(data) {
+            routie({
+                '': function () { //start page
+                    section.insert(data);
+                },
+                '/detail/*': function () {
+                    section.insert(data);
+                }
             });
         }
     }
@@ -29,7 +41,7 @@
         toggle: function (route) {
 
             //remove all active class
-            var section = document.querySelectorAll('section');
+            let section = document.querySelectorAll('section');
             section.forEach(function (i) {
                 i.classList.remove('active');
             });
@@ -38,8 +50,32 @@
             document.querySelector(route).classList.add('active');
         },
 
-        insert: function(element){
-            console.log(element)
+        insert: function (data) {
+            let dataCoin = data.map(function (i) { //Map function thanks to Keving Wang
+                return {
+                    id : i.id,
+                    rank: i.rank,
+                    name: i.name,
+                    price: i.price_usd,
+                    percent_change_24h: i.percent_change_24h
+                }        
+            });
+
+           var  directives = {
+                coin_id: {
+                  href: function(params) {                      
+                    return "index.html/detail/"+this.id
+                  },
+                  percent_change_24h: {
+                    class: function(params){
+                        console.log(i);
+                        return this.percent_change_24h
+                    }
+                  }
+                }
+              };
+
+            Transparency.render(document.querySelector('#start div'), dataCoin, directives);
         }
     }
 

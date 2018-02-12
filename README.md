@@ -70,9 +70,5 @@ Kollergorna is a beautifull site that doens't use a traditional layout. Also the
 9. Web Worker implementeren (extra)
 10. Code review
 
-## priority
-11. Data ophalen met AJAX (woensdag)
-12. Routie.js of andere router library implementeren (woensdag)
-13. DomChanger.js of andere template engine implementeren (woensdag)
 
 
