@@ -96,10 +96,12 @@ section div a:nth-child(odd) {
     background-color: rgba(0, 0, 0, 0.34);
 }
 
-section div a:hover, section div a:focus {
+@media (min-width:50em){
+    section div a:hover, section div a:focus {
     box-shadow: var(--material-shaduw-4);
     transform: scale(1.04);
     outline: none;
+}
 }
 
 section div a img{
@@ -203,8 +205,12 @@ section div span {
 .price {
     color: #FFA726;
 }
-
 @media (min-width: 50em){
+    .price{
+        font-size: 0.8em;
+    }
+}
+@media (min-width: 70em){
     .price{
         font-size: 0.4em;
     }

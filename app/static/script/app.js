@@ -95,7 +95,7 @@
                         let url = '';
                         let name = this.id; // name of the coin we want to get
                         if( width < bigScreen){
-                            url = 'https://files.coinmarketcap.com/static/img/coins/32x32/' + name + '.png';
+                            url = 'https://files.coinmarketcap.com/static/img/coins/64x64/' + name + '.png';
                         }
                         else{
                             url = 'https://files.coinmarketcap.com/static/img/coins/128x128/' + name + '.png';
