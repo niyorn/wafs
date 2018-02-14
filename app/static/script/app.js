@@ -69,7 +69,7 @@
             let directives = {
                 coin_id: {
                     href: function () {
-                        return "index.html/detail/" + this.id
+                        return "https://coinmarketcap.com/currencies/" + this.id
                     }
                 },
                 percent_change_1h: {
