@@ -109,6 +109,18 @@ section div span.rank {
     content: "%";
 }
 
+.change.plus{
+    color: #00E676;
+}
+
+.change.minus{
+    color: #E53935;
+}
+
+.change.neutral{
+    color: grey;
+}
+
 .price::before {
     content: "$";
 }

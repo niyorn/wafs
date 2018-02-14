@@ -65,11 +65,27 @@
                 coin_id: {
                     href: function (params) {
                         return "index.html/detail/" + this.id
-                    },
-                    percent_change_24h: {
-                        class: function (params) {
-                            return this.percent_change_24h
+                    }
+                },
+                percent_change_24h: {
+                    class: function (params) {
+                        /*This function assign a class to an element if the value is higher or
+                        lower than 0*/
+                        let value = this.percent_change_24h;
+                        let className = '';
+
+                        //Check value
+                        if(value < 0){
+                            className = 'minus';
                         }
+                        else if(value > 0){
+                            className = 'plus';
+                        }
+                        else{
+                            className = 'neutral';
+                        }
+                        
+                        return 'change '+ className //'change' is just a classt  css that add a '%' sign
                     }
                 }
             };
