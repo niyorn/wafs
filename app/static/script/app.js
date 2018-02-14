@@ -53,18 +53,7 @@
 
         //The insert function will insert data to element with the same 'data-bind' name.
         insert: function (data) {
-            let dataCoin = data.map(function (i) { //Map function thanks to Keving Wang
-                let price;
-                
-                function lol (){
-                    let roundUpPrice = Math.round(i.price_usd * 100) / 100;
-                    
-                    price = roundUpPrice;
-                }
-
-                console.log(price);
-                
-
+            let dataCoin = data.map(function (i) { //Map function thanks to Keving Wang?>
                 return {
                     id: i.id,
                     rank: i.rank,
