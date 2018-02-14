@@ -114,7 +114,7 @@ section div span {
 }
 @media (min-width: 50em){
     section div span{
-        font-size: 100%;
+        font-size: 150%;
     }
 }
 

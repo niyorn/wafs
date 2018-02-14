@@ -99,8 +99,18 @@
                 },
                 coin_image: {
                     src: function () {
-                        let name = this.id;
-                        let url = 'https://files.coinmarketcap.com/static/img/coins/128x128/' + name + '.png';
+                        /*We want to give a lower resolution picture on mobile. The if/else check
+                        if the screen is a small(mobile) screen*/                        
+                        let bigScreen = 799;
+                        let width = helper.checkViewWidth();
+                        let url = '';
+                        let name = this.id; // name of the coin we want to get
+                        if( width < bigScreen){
+                            url = 'https://files.coinmarketcap.com/static/img/coins/32x32/' + name + '.png';
+                        }
+                        else{
+                            url = 'https://files.coinmarketcap.com/static/img/coins/128x128/' + name + '.png';
+                        }
                         return url;
                     },
                     alt: function () {
@@ -130,6 +140,10 @@
             }
 
             return className;
+        },
+        checkViewWidth: function() {
+            let width = window.innerWidth;
+            return width;
         }
     }
 
