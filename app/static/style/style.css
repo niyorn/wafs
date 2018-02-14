@@ -61,18 +61,31 @@ section {
 section div {
     padding-top: 0.4rem;
     padding-bottom: 0.4rem;
+    max-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
 section div a {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 40% 1fr;
     box-shadow: var(--material-shaduw-1);
     transition: var(--matrail-transition);
     margin-bottom: 1rem;
     text-decoration: none;
     color: white;
-    padding: 3.4rem 2rem;
+    padding: 1.4rem 1rem;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+@media (min-width: 50em){
+    section div a{
+        overflow: hidden;
+        width: 27em;
+    }
 }
 
 section div a:nth-child(even) {
@@ -85,7 +98,7 @@ section div a:nth-child(odd) {
 
 section div a:hover, section div a:focus {
     box-shadow: var(--material-shaduw-4);
-    transform: scale(1.02);
+    transform: scale(1.04);
     outline: none;
 }
 
@@ -93,23 +106,79 @@ section div a img{
     height: 4em;
 }
 
-section div a p{
-    min-width: 10em;
-}
-
 section div span {
     font-size: 1.8em;
-    border-right: solid #0000001a 1px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
+@media (min-width: 50em){
+    section div span{
+        font-size: 100%;
+    }
+}
+
+
+.info{
+    display: inline-flex;
+    width: 100%;
+    flex-wrap: wrap;
+    padding-left: 1rem;
+    animation: slide-in-from-bottom 2s;
+}
+
+.info p:first-of-type{
+    justify-content: center;
+    font-size: 4vw;
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 0.4rem;
+}
+
+
+.info p{
+    display: inline-flex;
+    flex-direction: column;
+    font-size: 2.7vw;
+}
+
+@media (min-width: 50em){
+    .info p{
+        font-size: 100%;
+    }
+}
+
+.info p:last-of-type{
+    margin-left: auto;
+}
 
 .rank {
     font-weight: bold;
-    color:#B3E5FC;
-    margin-right: 1.4rem;
-    opacity: 0.4;
+    font-size: 30vw;
+    color:rgba(0, 0, 0, 0.06);
+    position: absolute;
+    justify-self: center;
+    top:0;
+    bottom:0;
+}
+@media(min-width:50em){
+    .rank{
+        font-size: 14em;
+    }
+}
+
+.container-name{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    animation: slide-in-from-bottom 2s;
+}
+
+.container-name p{
+    width: 100%;
+    margin-top: auto;
 }
 
 .name{
@@ -117,16 +186,28 @@ section div span {
     justify-content: center;
     text-align: center;
     padding: 0 0.4em;
+    font-size: 140%;
 }
 
 .extra-info{
-    font-size: 1em;
+    font-size: 100%;
     opacity: 0.4;
-    margin-bottom: 0.4rem;
+    margin-top: 0.4rem;
+}
+@media (min-width: 50em){
+    .extra-info.info-price{
+        font-size: 20%;
+    }
 }
 
 .price {
     color: #FFA726;
+}
+
+@media (min-width: 50em){
+    .price{
+        font-size: 0.4em;
+    }
 }
 
 .change::after {
@@ -151,4 +232,16 @@ section div span {
 
 .active {
     display: block;
+}
+
+@keyframes slide-in-from-bottom{
+    from{
+        transform: translateY(10em);
+        opacity: 0;
+    }
+
+    to{
+        transform: translateY(0);
+        opacity: 1;
+    }
 }
