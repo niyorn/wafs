@@ -18,12 +18,21 @@
                     <span data-bind="rank" class="rank"></span>
                     <img  data-bind="coin_image" src="" alt="">
                     <p>
-                        <span data-bind="name_abbreviation" class="name-abbreviation"></span> 
+                        <span data-bind="name_abbreviation" class="extra-info"></span> 
                         <span data-bind="name" class="name"></span>
                     </p>
-                                 
-                    <span data-bind="price" class="price"></span>
-                    <span data-bind="percent_change_24h"></span>
+                    <p>
+                        <span class="extra-info">Price USD</span>
+                        <span data-bind="price" class="price"></span>
+                    </p>
+                    <p>
+                            <span class="extra-info">Change 1h</span>
+                            <span data-bind="percent_change_1h"></span>
+                        </p>
+                    <p>
+                        <span class="extra-info">Change 24h</span>
+                        <span data-bind="percent_change_24h"></span>
+                    </p>                   
             </a>
         </div>
     </section>

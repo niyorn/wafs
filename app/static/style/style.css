@@ -61,17 +61,18 @@ section {
 section div {
     padding-top: 0.4rem;
     padding-bottom: 0.4rem;
-    max-width: 67em;
 }
 
 section div a {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     box-shadow: var(--material-shaduw-1);
     transition: var(--matrail-transition);
     margin-bottom: 1rem;
     text-decoration: none;
     color: white;
+    padding: 3.4rem 2rem;
 }
 
 section div a:nth-child(even) {
@@ -90,7 +91,6 @@ section div a:hover, section div a:focus {
 
 section div a img{
     height: 4em;
-    margin-left: 2rem;
 }
 
 section div a p{
@@ -99,31 +99,30 @@ section div a p{
 
 section div span {
     font-size: 1.8em;
-    padding: 3.4rem 2rem;
     border-right: solid #0000001a 1px;
-    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .rank {
-    width: 24rem;
     font-weight: bold;
-    background-color: #448AFF;
+    color:#B3E5FC;
+    margin-right: 1.4rem;
+    opacity: 0.4;
 }
 
 .name{
     display: flex;
     justify-content: center;
     text-align: center;
-    padding: 0;
+    padding: 0 0.4em;
 }
 
-.name-abbreviation{
-    padding: 0;
-    font-size: 0.9em;
+.extra-info{
+    font-size: 1em;
     opacity: 0.4;
+    margin-bottom: 0.4rem;
 }
 
 .price {
