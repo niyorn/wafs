@@ -54,24 +54,26 @@
         //The insert function will insert data to element with the same 'data-bind' name.
         insert: function (data) {
             let dataCoin = data.map(function (i) { //Map function thanks to Keving Wang
+                console.log(i);
                 return {
                     id: i.id,
                     rank: i.rank,
                     name: i.name,
                     price: i.price_usd,
-                    percent_change_24h: i.percent_change_24h
+                    percent_change_24h: i.percent_change_24h,
+                    name_abbreviation: i.symbol
                 }
             });
 
             //directive add extra information to the element for example 'class' or 'href'
             let directives = {
                 coin_id: {
-                    href: function (params) {
+                    href: function () {
                         return "index.html/detail/" + this.id
                     }
                 },
                 percent_change_24h: {
-                    class: function (params) {
+                    class: function () {
                         /*This function assign a class to an element if the value is higher or
                         lower than 0*/
                         let value = this.percent_change_24h;
@@ -90,6 +92,16 @@
                         
                         return 'change '+ className //'change' is just a classt  css that add a '%' sign
                     }
+                },
+                coin_image:{
+                    src: function(){
+                        let name = this.id;
+                        let url = 'https://files.coinmarketcap.com/static/img/coins/128x128/'+ name +'.png';
+                        return url;
+                    },
+                    alt: function(){
+                        return this.id;
+                    }               
                 }
             };
 

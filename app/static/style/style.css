@@ -66,6 +66,7 @@ section div {
 
 section div a {
     display: flex;
+    align-items: center;
     box-shadow: var(--material-shaduw-1);
     transition: var(--matrail-transition);
     margin-bottom: 1rem;
@@ -81,13 +82,24 @@ section div a:nth-child(odd) {
     background-color: rgba(0, 0, 0, 0.34);
 }
 
-section div a:hover {
+section div a:hover, section div a:focus {
     box-shadow: var(--material-shaduw-4);
+    transform: scale(1.02);
+    outline: none;
+}
+
+section div a img{
+    height: 4em;
+    margin-left: 2rem;
+}
+
+section div a p{
+    min-width: 10em;
 }
 
 section div span {
     font-size: 1.8em;
-    padding: 4rem 2rem;
+    padding: 3.4rem 2rem;
     border-right: solid #0000001a 1px;
     width: 100%;
     display: flex;
@@ -95,10 +107,23 @@ section div span {
     align-items: center;
 }
 
-section div span.rank {
+.rank {
     width: 24rem;
     font-weight: bold;
     background-color: #448AFF;
+}
+
+.name{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding: 0;
+}
+
+.name-abbreviation{
+    padding: 0;
+    font-size: 0.9em;
+    opacity: 0.4;
 }
 
 .price {
