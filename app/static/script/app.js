@@ -12,7 +12,6 @@
                 let url = "https://api.coinmarketcap.com/v1/ticker/";
                 xhr.open("GET", url, true); //create a async request
 
-                //magic
                 xhr.onload = function (e) {
                     if (xhr.readyState === 4) {
                         if (xhr.status === 200) {
@@ -25,7 +24,7 @@
                     }
                 };
 
-                //Extra error handle of the onload doesn't work
+                //Extra error handle if the onload doesn't work
                 xhr.onerror = function (){
                     reject({
                         status: this.status,
@@ -37,21 +36,16 @@
                 xhr.send();
             });
 
-
             //handle promise
             requestNetwork.then(function(data){
                 let dataJson = JSON.parse(data);
                 routes.init(dataJson);
             })
             .catch(function(err){
-                console.log(2, err)
-            });
-
-                
+                console.log(err)
+            });         
         }
     }
-
-
 
     //Handel the route 
     var routes = {
@@ -63,8 +57,10 @@
                 '': function () { //start page
                     section.insert(data);
                 },
-                '/detail/*': function () {
-                    section.insert(data);
+                '*/#detail': function () {
+                    console.log('lol');
+                    
+                    section.detail(data);
                 }
             });
         }
@@ -100,7 +96,8 @@
             let directives = {
                 coin_id: {
                     href: function () {
-                        return "https://coinmarketcap.com/currencies/" + this.id
+                        name = this.id
+                        return "#detail"
                     }
                 },
                 percent_change_1h: {
@@ -141,6 +138,13 @@
 
             //Call Transparency to inject our objects into the Dom
             Transparency.render(document.querySelector('#start div'), dataCoin, directives);
+        },
+
+        detail: function(data){
+            console.log('lolg');
+            
+            document.querySelector('.detail-container').classList.add('active');
+            this.insert(data);
         }
     }
 
