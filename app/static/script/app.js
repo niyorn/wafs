@@ -7,7 +7,7 @@
 
             /*Created promise syntax with the help of Kevin Wang(github: Kyunwang) and stackoverflow:
             https://stackoverflow.com/questions/30008114/how-do-i-promisify-native-xhr*/
-            let requestNetwork = new Promise(function(resolve, reject){
+            let requestNetwork = new Promise(function (resolve, reject) {
                 let xhr = new XMLHttpRequest();
                 let url = "https://api.coinmarketcap.com/v1/ticker/";
                 xhr.open("GET", url, true); //create a async request
@@ -17,31 +17,33 @@
                         if (xhr.status === 200) {
                             resolve(xhr.responseText);
                         } else {
-                            reject({ status: this.status });
+                            reject({
+                                status: this.status
+                            });
                         }
                     }
                 };
 
                 //Extra error handle if the onload doesn't work
-                xhr.onerror = function (){
+                xhr.onerror = function () {
                     reject({
                         status: this.status,
                         test: 2
                     });
                 }
-                
+
                 //send request
                 xhr.send();
             });
 
             //handle promise
-            requestNetwork.then(function(data){
-                let dataJson = JSON.parse(data);
-                routes.init(dataJson);
-            })
-            .catch(function(err){
-                console.log(err)
-            });         
+            requestNetwork.then(function (data) {
+                    let dataJson = JSON.parse(data);
+                    routes.init(dataJson);
+                })
+                .catch(function (err) {
+                    console.log(err)
+                });
         }
     }
 
@@ -53,10 +55,11 @@
         routie(data) {
             routie({
                 '': function () { //start page
+                    section.hideDetailPage();
                     section.insert(section.mapData(data));
                 },
                 'detail/:id': function (id) {
-                    section.detail(data,id);
+                    section.detail(data, id);
                 }
             });
         }
@@ -91,15 +94,14 @@
                 coin_image: {
                     src: function () {
                         /*We want to give a lower resolution picture on mobile. The if/else check
-                        if the screen is a small(mobile) screen*/                        
+                        if the screen is a small(mobile) screen*/
                         let bigScreen = 799;
                         let width = helper.checkViewWidth();
                         let url;
                         let name = this.id; // name of the coin we want to get
-                        if( width < bigScreen){
+                        if (width < bigScreen) {
                             url = 'https://files.coinmarketcap.com/static/img/coins/64x64/' + name + '.png';
-                        }
-                        else{
+                        } else {
                             url = 'https://files.coinmarketcap.com/static/img/coins/128x128/' + name + '.png';
                         }
                         return url;
@@ -110,25 +112,25 @@
                 }
             };
 
-            if(extraInfo === true){
-            //Call Transparency to inject our objects into the Dom
-            Transparency.render(document.querySelector('#detail'), data, directives);
-            }
-            else{
-            //Call Transparency to inject our objects into the Dom
-            Transparency.render(document.querySelector('#start div'), data, directives);
+            if (extraInfo === true) {
+                //Call Transparency to inject our objects into the Dom
+                Transparency.render(document.querySelector('#detail'), data, directives);
+            } else {
+                //Call Transparency to inject our objects into the Dom
+                Transparency.render(document.querySelector('#start div'), data, directives);
             }
         },
-        detail: function(data, coinID){
-            function findCoin(name){
+        detail: function (data, coinID) {
+            function findCoin(name) {
                 return name.id === coinID;
-            } 
-            let pastAllongData  = [data.find(findCoin)];
+            }
+            let pastAllongData = [data.find(findCoin)];
             let detailPage = true;
             this.insert(this.mapData(pastAllongData), detailPage);
             document.querySelector('.detail-container').classList.add('active');
+            event.backToHome();
         },
-        mapData: function(data) {
+        mapData: function (data) {
             let dataCoin = data.map(function (i) { //Map function thanks to Keving Wang?
                 return {
                     id: i.id,
@@ -145,6 +147,9 @@
                 }
             });
             return dataCoin;
+        },
+        hideDetailPage: function () {
+            document.querySelector('.detail-container').classList.remove('active');
         }
     }
 
@@ -165,9 +170,17 @@
 
             return className;
         },
-        checkViewWidth: function() {
+        checkViewWidth: function () {
             let width = window.innerWidth;
             return width;
+        }
+    }
+
+    var event = {
+        backToHome() {
+            document.querySelector('.detail-container button').addEventListener('click', function () {
+                location.replace("");
+            })
         }
     }
 
