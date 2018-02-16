@@ -17,9 +17,7 @@
                         if (xhr.status === 200) {
                             resolve(xhr.responseText);
                         } else {
-                            reject({
-                                status: this.status
-                            })
+                            reject({ status: this.status });
                         }
                     }
                 };
@@ -29,7 +27,7 @@
                     reject({
                         status: this.status,
                         test: 2
-                    })
+                    });
                 }
                 
                 //send request
@@ -57,10 +55,8 @@
                 '': function () { //start page
                     section.insert(data);
                 },
-                '*/#detail': function () {
-                    console.log('lol');
-                    
-                    section.detail(data);
+                'detail/:id': function (id) {
+                    section.insert(data);
                 }
             });
         }
@@ -97,21 +93,21 @@
                 coin_id: {
                     href: function () {
                         name = this.id
-                        return "#detail"
+                        return "#detail/" + this.id; // Use this as base for going to detail
                     }
                 },
                 percent_change_1h: {
                     class: function () {
                         let value = this.percent_change_1h;
                         let className = helper.assignClass(value); // assign class to the value
-                        return 'change ' + className //'change' is just a classt  css that add a '%' sign
+                        return 'change ' + className; //'change' is just a classt  css that add a '%' sign
                     }
                 },
                 percent_change_24h: {
                     class: function () {
                         let value = this.percent_change_24h;
                         let className = helper.assignClass(value); // assign class to the value
-                        return 'change ' + className //'change' is just a classt  css that add a '%' sign
+                        return 'change ' + className; //'change' is just a classt  css that add a '%' sign
                     }
                 },
                 coin_image: {
@@ -120,7 +116,7 @@
                         if the screen is a small(mobile) screen*/                        
                         let bigScreen = 799;
                         let width = helper.checkViewWidth();
-                        let url = '';
+                        let url;
                         let name = this.id; // name of the coin we want to get
                         if( width < bigScreen){
                             url = 'https://files.coinmarketcap.com/static/img/coins/64x64/' + name + '.png';
