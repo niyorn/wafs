@@ -43,7 +43,6 @@
 
     <section class="detail-container">
         <div id="detail">
-            <a data-bind="coin_id" href="">
                 <span data-bind="rank" class="rank"></span>
                 <div class="container-name">
                     <img data-bind="coin_image" src="" alt="">
@@ -56,18 +55,24 @@
                     <p>
                         <span class="extra-info info-price">Price USD</span>
                         <span data-bind="price" class="price"></span>
+                        <span data-bind="price_btc"></span>
                     </p>
                     <p>
                         <span class="extra-info">Change 1h</span>
                         <span data-bind="percent_change_1h"></span>
+                        <span data-bind="precent_change_24"></span>
                     </p>
                     <p>
                         <span class="extra-info">Change 24h</span>
                         <span data-bind="percent_change_24h"></span>
                     </p>
-                </div>
-            </a>
+                    <p>
+                        <span data-bind="market_cap"></span>
+                        <span data-bind="supply"></span>
+                        <span data-bind="volume"></span>
+                    </p>
 
+                </div>
         </div>
     </section>
 
