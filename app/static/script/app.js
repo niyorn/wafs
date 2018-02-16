@@ -4,23 +4,54 @@
 
     var app = {
         init: function () {
-            let xhr = new XMLHttpRequest();
-            let url = "https://api.coinmarketcap.com/v1/ticker/";
 
-            xhr.open("GET", url, true); //create a async request
-            xhr.onload = function (e) {
-                if (xhr.readyState === 4) {
-                    if (xhr.status === 200) {
-                        var data = JSON.parse(xhr.responseText); //Create object from the string that we get
-                        routes.init(data); //init route
-                    } else {
-                        console.error(xhr.statusText);
+            /*Created promise syntax with the help of Kevin Wang(github: Kyunwang) and stackoverflow:
+            https://stackoverflow.com/questions/30008114/how-do-i-promisify-native-xhr*/
+            let requestNetwork = new Promise(function(resolve, reject){
+                let xhr = new XMLHttpRequest();
+                let url = "https://api.coinmarketcap.com/v1/ticker/";
+                xhr.open("GET", url, true); //create a async request
+
+                //magic
+                xhr.onload = function (e) {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 200) {
+                            resolve(xhr.responseText);
+                        } else {
+                            reject({
+                                status: this.status
+                            })
+                        }
                     }
+                };
+
+                //Extra error handle of the onload doesn't work
+                xhr.onerror = function (){
+                    reject({
+                        status: this.status,
+                        test: 2
+                    })
                 }
-            };
-            xhr.send();
+                
+                //send request
+                xhr.send();
+            });
+
+
+            //handle promise
+            requestNetwork.then(function(data){
+                let dataJson = JSON.parse(data);
+                routes.init(dataJson);
+            })
+            .catch(function(err){
+                console.log(2, err)
+            });
+
+                
         }
     }
+
+
 
     //Handel the route 
     var routes = {
