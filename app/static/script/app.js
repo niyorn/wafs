@@ -53,10 +53,10 @@
         routie(data) {
             routie({
                 '': function () { //start page
-                    section.insert(data);
+                    section.insert(section.mapData(data));
                 },
                 'detail/:id': function (id) {
-                    section.insert(data);
+                    section.detail(data,id);
                 }
             });
         }
@@ -64,30 +64,8 @@
 
     //This is the object Function where will manipulate the DOM elements
     var section = {
-        toggle: function (route) {
-            //remove all active class
-            let section = document.querySelectorAll('section');
-            section.forEach(function (i) {
-                i.classList.remove('active');
-            });
-            //Add active class to the page-link that you've clicked
-            document.querySelector(route).classList.add('active');
-        },
-
         //The insert function will insert data to element with the same 'data-bind' name.
         insert: function (data) {
-            let dataCoin = data.map(function (i) { //Map function thanks to Keving Wang?>
-                return {
-                    id: i.id,
-                    rank: i.rank,
-                    name: i.name,
-                    price: i.price_usd,
-                    percent_change_1h: i.percent_change_1h,
-                    percent_change_24h: i.percent_change_24h,
-                    name_abbreviation: i.symbol
-                }
-            });
-
             //directive add extra information to the element for example 'class' or 'href'
             let directives = {
                 coin_id: {
@@ -133,14 +111,29 @@
             };
 
             //Call Transparency to inject our objects into the Dom
-            Transparency.render(document.querySelector('#start div'), dataCoin, directives);
+            Transparency.render(document.querySelector('#start div'), data, directives);
         },
-
-        detail: function(data){
-            console.log('lolg');
+        detail: function(data, coinID){
+            function findCoin(name){
+                return name.id = coinID;
+            } 
+            let pastAllongData  = [data.find(findCoin)];
+            this.insert(this.mapData(pastAllongData));
+        },
+        mapData: function(data){
+            let dataCoin = data.map(function (i) { //Map function thanks to Keving Wang?>
+                return {
+                    id: i.id,
+                    rank: i.rank,
+                    name: i.name,
+                    price: i.price_usd,
+                    percent_change_1h: i.percent_change_1h,
+                    percent_change_24h: i.percent_change_24h,
+                    name_abbreviation: i.symbol
+                }
+            });
             
-            document.querySelector('.detail-container').classList.add('active');
-            this.insert(data);
+            return dataCoin;
         }
     }
 
