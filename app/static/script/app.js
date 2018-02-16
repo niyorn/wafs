@@ -12,7 +12,6 @@
                 let url = "https://api.coinmarketcap.com/v1/ticker/";
                 xhr.open("GET", url, true); //create a async request
 
-                //magic
                 xhr.onload = function (e) {
                     if (xhr.readyState === 4) {
                         if (xhr.status === 200) {
@@ -23,7 +22,7 @@
                     }
                 };
 
-                //Extra error handle of the onload doesn't work
+                //Extra error handle if the onload doesn't work
                 xhr.onerror = function (){
                     reject({
                         status: this.status,
@@ -35,21 +34,16 @@
                 xhr.send();
             });
 
-
             //handle promise
             requestNetwork.then(function(data){
                 let dataJson = JSON.parse(data);
                 routes.init(dataJson);
             })
             .catch(function(err){
-                console.log(2, err)
-            });
-
-                
+                console.log(err)
+            });         
         }
     }
-
-
 
     //Handel the route 
     var routes = {
@@ -59,10 +53,10 @@
         routie(data) {
             routie({
                 '': function () { //start page
-                    section.insert(data);
+                    section.insert(section.mapData(data));
                 },
                 'detail/:id': function (id) {
-                    section.insert(data);
+                    section.detail(data,id);
                 }
             });
         }
@@ -70,36 +64,14 @@
 
     //This is the object Function where will manipulate the DOM elements
     var section = {
-        toggle: function (route) {
-            //remove all active class
-            let section = document.querySelectorAll('section');
-            section.forEach(function (i) {
-                i.classList.remove('active');
-            });
-            //Add active class to the page-link that you've clicked
-            document.querySelector(route).classList.add('active');
-        },
-
         //The insert function will insert data to element with the same 'data-bind' name.
         insert: function (data) {
-            let dataCoin = data.map(function (i) { //Map function thanks to Keving Wang?>
-                return {
-                    id: i.id,
-                    rank: i.rank,
-                    name: i.name,
-                    price: i.price_usd,
-                    percent_change_1h: i.percent_change_1h,
-                    percent_change_24h: i.percent_change_24h,
-                    name_abbreviation: i.symbol
-                }
-            });
-
             //directive add extra information to the element for example 'class' or 'href'
             let directives = {
                 coin_id: {
                     href: function () {
-								return "https://coinmarketcap.com/currencies/" + this.id;
-								// return "#detail/" + this.id; // Use this as base for going to detail
+                        name = this.id
+                        return "#detail/" + this.id; // Use this as base for going to detail
                     }
                 },
                 percent_change_1h: {
@@ -139,7 +111,29 @@
             };
 
             //Call Transparency to inject our objects into the Dom
-            Transparency.render(document.querySelector('#start div'), dataCoin, directives);
+            Transparency.render(document.querySelector('#start div'), data, directives);
+        },
+        detail: function(data, coinID){
+            function findCoin(name){
+                return name.id = coinID;
+            } 
+            let pastAllongData  = [data.find(findCoin)];
+            this.insert(this.mapData(pastAllongData));
+        },
+        mapData: function(data){
+            let dataCoin = data.map(function (i) { //Map function thanks to Keving Wang?>
+                return {
+                    id: i.id,
+                    rank: i.rank,
+                    name: i.name,
+                    price: i.price_usd,
+                    percent_change_1h: i.percent_change_1h,
+                    percent_change_24h: i.percent_change_24h,
+                    name_abbreviation: i.symbol
+                }
+            });
+            
+            return dataCoin;
         }
     }
 

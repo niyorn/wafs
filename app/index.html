@@ -41,6 +41,36 @@
         </div>
     </section>
 
+    <section class="detail-container">
+        <div id="detail">
+            <a data-bind="coin_id" href="">
+                <span data-bind="rank" class="rank"></span>
+                <div class="container-name">
+                    <img data-bind="coin_image" src="" alt="">
+                    <p>
+                        <span data-bind="name_abbreviation" class="extra-info"></span>
+                        <span data-bind="name" class="name"></span>
+                    </p>
+                </div>
+                <div class="info">
+                    <p>
+                        <span class="extra-info info-price">Price USD</span>
+                        <span data-bind="price" class="price"></span>
+                    </p>
+                    <p>
+                        <span class="extra-info">Change 1h</span>
+                        <span data-bind="percent_change_1h"></span>
+                    </p>
+                    <p>
+                        <span class="extra-info">Change 24h</span>
+                        <span data-bind="percent_change_24h"></span>
+                    </p>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
     <script src="static/script/routie.js"></script>
     <script src="static/script/transparency.js"></script>
     <script src="static/script/app.js"></script>
