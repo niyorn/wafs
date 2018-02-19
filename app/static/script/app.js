@@ -91,6 +91,13 @@
                         return 'change ' + className; //'change' is just a classt  css that add a '%' sign
                     }
                 },
+                percent_change_7day: {
+                    class: function () {
+                        let value = this.percent_change_7day;
+                        let className = helper.assignClass(value); // assign class to the value
+                        return 'change ' + className; //'change' is just a classt  css that add a '%' sign
+                    }
+                },
                 coin_image: {
                     src: function () {
                         /*We want to give a lower resolution picture on mobile. The if/else check
@@ -106,11 +113,18 @@
                         }
                         return url;
                     },
-                    alt: function () {
+                    alt: function () {                        
                         return this.id;
                     }
-                }
+                },
+                coin_market_cap: {
+                    href: function () {             
+                        return "https://coinmarketcap.com/currencies/"+this.id;
+                    }
+                },
             };
+
+
 
             if (extraInfo === true) {
                 //Call Transparency to inject our objects into the Dom
@@ -127,11 +141,16 @@
             let pastAllongData = [data.find(findCoin)];
             let detailPage = true;
             this.insert(this.mapData(pastAllongData), detailPage);
+            document.querySelector('#start').classList.add('inactive');
             document.querySelector('.detail-container').classList.add('active');
-            event.backToHome();
         },
         mapData: function (data) {
             let dataCoin = data.map(function (i) { //Map function thanks to Keving Wang?
+                let max_supply1 = "";
+                if (i.max_supply == null) {
+                    max_supply1 = "No data"
+                }
+
                 return {
                     id: i.id,
                     rank: i.rank,
@@ -141,14 +160,17 @@
                     volume: i['24h_volume_usd'],
                     market_cap: i.market_cap_usd,
                     supply: i.available_supply,
+                    max_supply: max_supply1,
                     percent_change_1h: i.percent_change_1h,
                     percent_change_24h: i.percent_change_24h,
+                    percent_change_7day: i.percent_change_7d,
                     name_abbreviation: i.symbol
                 }
             });
             return dataCoin;
         },
         hideDetailPage: function () {
+            document.querySelector('#start').classList.remove('inactive');
             document.querySelector('.detail-container').classList.remove('active');
         }
     }
@@ -173,14 +195,6 @@
         checkViewWidth: function () {
             let width = window.innerWidth;
             return width;
-        }
-    }
-
-    var event = {
-        backToHome() {
-            document.querySelector('.detail-container button').addEventListener('click', function () {
-                location.replace("");
-            })
         }
     }
 
