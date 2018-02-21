@@ -9,6 +9,7 @@
             https://stackoverflow.com/questions/30008114/how-do-i-promisify-native-xhr*/
             let requestNetwork = new Promise(function (resolve, reject) {
                 let xhr = new XMLHttpRequest();
+                
                 let url = "https://api.coinmarketcap.com/v1/ticker/";
                 xhr.open("GET", url, true); //create a async request
 
@@ -28,7 +29,6 @@
                 xhr.onerror = function () {
                     reject({
                         status: this.status,
-                        test: 2
                     });
                 }
 
@@ -39,6 +39,7 @@
             //handle promise
             requestNetwork.then(function (data) {
                     let dataJson = JSON.parse(data);
+                    
                     routes.init(dataJson);
                 })
                 .catch(function (err) {
@@ -107,9 +108,9 @@
                         let url;
                         let name = this.id; // name of the coin we want to get
                         if (width < bigScreen) {
-                            url = 'https://files.coinmarketcap.com/static/img/coins/64x64/' + name + '.png';
+                            url = 'https://www.livecoinwatch.com//images/icons32/' + name + '.png';
                         } else {
-                            url = 'https://files.coinmarketcap.com/static/img/coins/128x128/' + name + '.png';
+                            url = 'https://www.livecoinwatch.com//images/icons64/' + name + '.png';
                         }
                         return url;
                     },
@@ -124,14 +125,16 @@
                 },
             };
 
-
-
             if (extraInfo === true) {
-                //Call Transparency to inject our objects into the Dom
+                //Render Detail page
                 Transparency.render(document.querySelector('#detail'), data, directives);
+                console.log('hallo');
+                
+                
             } else {
-                //Call Transparency to inject our objects into the Dom
+                //Render Overview page
                 Transparency.render(document.querySelector('#start div'), data, directives);
+                
             }
         },
         detail: function (data, coinID) {

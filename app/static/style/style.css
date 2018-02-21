@@ -129,7 +129,6 @@ section div span {
     width: 100%;
     flex-wrap: wrap;
     padding-left: 1rem;
-    animation: slide-in-from-bottom 2s;
 }
 
 .info p:first-of-type{
@@ -178,7 +177,7 @@ section div span {
     justify-content: center;
     align-items: center;
     height: 100%;
-    animation: slide-in-from-bottom 2s;
+    transition: all 1s;
 }
 
 .container-name p{
@@ -263,12 +262,15 @@ section div span {
     position: fixed;
     top: 0;
     left: 0;
-    height: 100vh;
+    min-height: 100vh;
+    height: 100%;
     width: 100%;
     justify-content: center;
     align-items: center;
     background-color: var(--secondary-color);
     color: white;
+    padding: 4rem;
+    overflow-y: scroll;
 }
 
 .detail-container div{
@@ -289,6 +291,7 @@ body{
 
 .detail-container .visit{
     margin-top: 0.7rem;
+    margin-bottom: 2rem;
     background-color: #448AFF;
     font-size: 1.7em;
     display: inline-flex;
