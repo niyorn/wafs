@@ -18,8 +18,11 @@
 # Actor & Flow diagram
 *To better understand how the application works, an actor and flow diagram is created to give an overview wich function is used in the application*/
 
-## Actor
+## Actor diagram
+![actor diagram](readme-assets/actor.jpg "actor diagram")
 
+## Flow diagram
+![flow diagram](readme-assets/flow.png "flow diagram")
 ## Single page web app in general
 *A single-page application (SPA) is an app that works inside a browser and does not require page reloading during use. You are using this type of applications every day. These are, for instance: Gmail, Google Maps, Facebook or GitHub.*
 
