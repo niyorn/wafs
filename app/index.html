@@ -12,8 +12,19 @@
 
 <body>
 
+    <section class="error" >
+            <span>Error: </span>
+            <span data-bind="error"></span>
+    </section>
+
     <section id="start" class="crypto">
         <div>
+            <div class="loader active">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
             <a data-bind="coin_id" href="">
                 <span data-bind="rank" class="rank"></span>
                 <div class="container-name">
@@ -26,7 +37,7 @@
                 <div class="info">
                     <p>
                         <span class="extra-info info-price">Price USD</span>
-                        <span data-bind="price" class="price"></span>
+                        <span data-bind="price_usd" class="price"></span>
                     </p>
                     <p>
                         <span class="extra-info">Change 1h</span>

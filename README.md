@@ -57,7 +57,21 @@ Kollergorna is a beautifull site that doens't use a traditional layout. Also the
 
 ![Kolergona](readme-assets/kollergorna.gif "kolergona")
 
+## Term
+### Promise
+A Promise is an object representing the eventual completion or failure of an asynchronous operation. Since most people are consumers of already-created promises, this guide will explain consumption of returned promises before explaining how to create them.
 
+Essentially, a promise is a returned object to which you attach callbacks, instead of passing callbacks into a function.
+
+
+Cross-Origin-aanvraag geblokkeerd: de Same Origin Policy staat het lezen van de externe bron op https://api.coinmarketcap.com/v1/ticker/ niet toe. (Reden: CORS-header ‘Access-Control-Allow-Origin’ ontbreekt).
+
+
+### Resource
+- https://developer.mozilla.org/nl/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function
+- https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin
+-https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
 # To do
 1. Create an issue for Leonie
 2. Create an issue for Kevin
