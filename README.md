@@ -1,5 +1,24 @@
 # Web-App-from-Scratch
-This is an single page web app. It is created from scratch without using any unnecessary libraries. 
+![Wafs](readme-assets/demo.gif "Wafs")
+
+*This Singe page web application enable you to keep track of the lastest price of the top 100 (coinmarketcap) cryptocurrencies*
+
+#Table of Content
+- [Getting started](##Getting-started)
+- [Wafs in general](##Singe-page-web-app-in-general)
+- [Inspiration](##Inspiration)
+
+
+## Getting started
+1. Clone the repo
+2. Change directory to ``app``
+3. Install all dependencies with ``npm install``
+4. You're ready to go!
+
+# Actor & Flow diagram
+*To better understand how the application works, an actor and flow diagram is created to give an overview wich function is used in the application*/
+
+## Actor
 
 ## Single page web app in general
 *A single-page application (SPA) is an app that works inside a browser and does not require page reloading during use. You are using this type of applications every day. These are, for instance: Gmail, Google Maps, Facebook or GitHub.*
@@ -37,10 +56,6 @@ Francois-Xavier P. Darveau ('Yes, You Should Learn Vanilla JavaScript Before Fan
 
 Marco Alka ('Vanilla JavaScript vs. Frameworks & Libraries sFinding a good balance'), taken from : https://hashnode.com/post/vanilla-javascript-vs-frameworks-and-libraries-finding-a-good-balance-civ1zfus90pphdc53q8vtakz5
 
-## Best practices
-...
-
- 
 ## Inspiration
 *The first thing I did was looking for inspiration and and good examples of single page application.*
 

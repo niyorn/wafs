@@ -8,6 +8,26 @@
         }
     }
 
+        //Handel the route 
+    var routes = {
+        init() {
+            routie({
+                '': function () { //start page
+                    section.loading.set();
+                    api.init();
+                },
+                'detail/:id': function (id) { //load the detail page
+                    let data = helper.storage;
+                    section.detail(data, id);
+                },
+                'error/:status': function (status) { // load the error page
+                    section.error(status);
+                }
+            });
+        }
+    }
+
+    //Make an external api call
     var api = {
         init: function () {
             /*Created promise syntax with the help of Kevin Wang(github: Kyunwang) and stackoverflow:
@@ -51,30 +71,33 @@
         }
     }
 
-    //Handel the route 
-    var routes = {
-        init() {
-            routie({
-                '': function () { //start page
-                    section.loading.set();
-                    api.init();
-                },
-                'detail/:id': function (id) { //load the detail page
-                    let data = helper.storage;
-                    section.detail(data, id);
-                },
-                'error/:status': function (status) { // load the error page
-                    section.error(status);
-                }
-            });
-        }
-    }
-
     //This is the object Function where will manipulate the DOM elements
     var section = {
         init: function (data) {
             this.overview(data);
             this.loading.remove();
+        },
+        overview: function (data) {
+            document.querySelector('#start').classList.remove('inactive'); //active overview container
+            document.querySelector('.detail-container').classList.remove('active'); //remove active container
+            this.insert(data);
+        },
+        detail: function (data, coinID) {
+            function findCoin(name) {
+                return name.id === coinID;
+            }
+            let pastAllongData = [data.find(findCoin)];
+            let detailPage = true;
+            this.insert(this.map(pastAllongData), detailPage);
+            document.querySelector('#start').classList.add('inactive');
+            document.querySelector('.detail-container').classList.add('active');
+        },
+        error: function (status) {
+            document.querySelector('.error').classList.add('active');
+            let error = {
+                error: status
+            };
+            Transparency.render(document.querySelector('.error'), error);
         },
         map: function (data) {
             let dataCoin = data.map(function (i) { //Map function thanks to Keving Wang?
@@ -167,28 +190,6 @@
 
             }
         },
-        overview: function (data) {
-            document.querySelector('#start').classList.remove('inactive'); //active overview container
-            document.querySelector('.detail-container').classList.remove('active'); //remove active container
-            this.insert(data);
-        },
-        detail: function (data, coinID) {
-            function findCoin(name) {
-                return name.id === coinID;
-            }
-            let pastAllongData = [data.find(findCoin)];
-            let detailPage = true;
-            this.insert(this.map(pastAllongData), detailPage);
-            document.querySelector('#start').classList.add('inactive');
-            document.querySelector('.detail-container').classList.add('active');
-        },
-        error: function (status) {
-            document.querySelector('.error').classList.add('active');
-            let error = {
-                error: status
-            };
-            Transparency.render(document.querySelector('.error'), error);
-        },
         loading: {
             set: function () {
                 let loader = document.querySelectorAll('.loader');
@@ -205,6 +206,7 @@
         }
     }
 
+    //Helper functions
     var helper = {
         assignClass: function (value) {
             /*This function assign a class to an element if the value is higher or
