@@ -18,7 +18,7 @@
                 xhr.open("GET", url, true); //create a async request
                 xhr.onload = function () {
                     if (xhr.readyState === 4) {
-                        if (xhr.status === 200) {//change hereree
+                        if (xhr.status === 200) { //change hereree
                             resolve(xhr.responseText);
                         } else {
                             reject({
@@ -46,7 +46,7 @@
                     section.init(dataJson);
                 })
                 .catch(function (err) {
-                    location.href = '#error/'+err.status //change to error hash
+                    location.href = '#error/' + err.status //change to error hash
                 });
         }
     }
@@ -63,7 +63,7 @@
                     let data = helper.storage;
                     section.detail(data, id);
                 },
-                'error/:status': function(status){ // load the error page
+                'error/:status': function (status) { // load the error page
                     section.error(status);
                 }
             });
@@ -72,11 +72,11 @@
 
     //This is the object Function where will manipulate the DOM elements
     var section = {
-        init: function(data){
+        init: function (data) {
             this.overview(data);
             this.loading.remove();
         },
-        mapData: function (data) {
+        map: function (data) {
             let dataCoin = data.map(function (i) { //Map function thanks to Keving Wang?
                 let max_supply1 = "";
                 if (i.max_supply == null) {
@@ -167,9 +167,9 @@
 
             }
         },
-        overview: function(data){
-            document.querySelector('#start').classList.remove('inactive');//active overview container
-            document.querySelector('.detail-container').classList.remove('active');//remove active container
+        overview: function (data) {
+            document.querySelector('#start').classList.remove('inactive'); //active overview container
+            document.querySelector('.detail-container').classList.remove('active'); //remove active container
             this.insert(data);
         },
         detail: function (data, coinID) {
@@ -178,34 +178,27 @@
             }
             let pastAllongData = [data.find(findCoin)];
             let detailPage = true;
-            this.insert(this.mapData(pastAllongData), detailPage);
+            this.insert(this.map(pastAllongData), detailPage);
             document.querySelector('#start').classList.add('inactive');
             document.querySelector('.detail-container').classList.add('active');
         },
-        error: function(status){
+        error: function (status) {
             document.querySelector('.error').classList.add('active');
             let error = {
                 error: status
             };
-
-            console.log(error)
-
             Transparency.render(document.querySelector('.error'), error);
-        },
-        hideDetailPage: function () {
-            document.querySelector('#start').classList.remove('inactive');
-            document.querySelector('.detail-container').classList.remove('active');
         },
         loading: {
             set: function () {
                 let loader = document.querySelectorAll('.loader');
-                loader.forEach(function(i){ //add active state to loader to activate it
+                loader.forEach(function (i) { //add active state to loader to activate it
                     i.classList.add('active');
                 })
             },
-            remove: function () {//instead of remove class, we're removing the whole loader element
+            remove: function () { //instead of remove class, we're removing the whole loader element
                 let loader = document.querySelectorAll('.loader');
-                loader.forEach(function(i){
+                loader.forEach(function (i) {
                     i.parentNode.removeChild(i);
                 })
             }
