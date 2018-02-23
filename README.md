@@ -3,10 +3,11 @@
 
 *This Singe page web application enable you to keep track of the lastest price of the top 100 (coinmarketcap) cryptocurrencies*
 
-#Table of Content
-- [Getting started](##Getting-started)
-- [Wafs in general](##Singe-page-web-app-in-general)
-- [Inspiration](##Inspiration)
+# Table of Content
+- [Getting started](##-Getting-started)
+- [Wafs in general](##-Singe-page-web-app-in-general)
+- [Inspiration](##-Inspiration)
+- [Actor & Flow diagram](##-Actor-&-Flow-diagram)
 
 
 ## Getting started
@@ -23,6 +24,62 @@
 
 ## Flow diagram
 ![flow diagram](readme-assets/flow.png "flow diagram")
+
+# Api
+*The api is taken from coinmarketcap: https://coinmarketcap.com/api/*
+
+- Endpoint: /ticker/
+- Method: GET
+- Optional parameters:
+
+    (int) start - return results from rank [start] and above
+    (int) limit - return a maximum of [limit] results (default is 100, use 0 to return all results)
+    (string) convert - return price, 24h volume, and market cap in terms of another currency. Valid values are:
+    "AUD", "BRL", "CAD", "CHF", "CLP", "CNY", "CZK", "DKK", "EUR", "GBP", "HKD", "HUF", "IDR", "ILS", "INR", "JPY", "KRW", "MXN", "MYR", "NOK", "NZD", "PHP", "PKR", "PLN", "RUB", "SEK", "SGD", "THB", "TRY", "TWD", "ZAR"
+
+- Example: https://api.coinmarketcap.com/v1/ticker/
+- Example: https://api.coinmarketcap.com/v1/ticker/?limit=10
+- Example: https://api.coinmarketcap.com/v1/ticker/?start=100&limit=10
+- Example: https://api.coinmarketcap.com/v1/ticker/?convert=EUR&limit=10
+
+_sample response_
+```
+[
+    {
+        "id": "bitcoin",
+        "name": "Bitcoin",
+        "symbol": "BTC",
+        "rank": "1",
+        "price_usd": "573.137",
+        "price_btc": "1.0",
+        "24h_volume_usd": "72855700.0",
+        "market_cap_usd": "9080883500.0",
+        "available_supply": "15844176.0",
+        "total_supply": "15844176.0",
+        "percent_change_1h": "0.04",
+        "percent_change_24h": "-0.3",
+        "percent_change_7d": "-0.57",
+        "last_updated": "1472762067"
+    },
+    {
+        "id": "ethereum",
+        "name": "Ethereum",
+        "symbol": "ETH",
+        "rank": "2",
+        "price_usd": "12.1844",
+        "price_btc": "0.021262",
+        "24h_volume_usd": "24085900.0",
+        "market_cap_usd": "1018098455.0",
+        "available_supply": "83557537.0",
+        "total_supply": "83557537.0",
+        "percent_change_1h": "-0.58",
+        "percent_change_24h": "6.34",
+        "percent_change_7d": "8.59",
+        "last_updated": "1472762062"
+    },
+    ...
+]  
+```
 ## Single page web app in general
 *A single-page application (SPA) is an app that works inside a browser and does not require page reloading during use. You are using this type of applications every day. These are, for instance: Gmail, Google Maps, Facebook or GitHub.*
 
@@ -81,26 +138,13 @@ A Promise is an object representing the eventual completion or failure of an asy
 
 Essentially, a promise is a returned object to which you attach callbacks, instead of passing callbacks into a function.
 
-
-Cross-Origin-aanvraag geblokkeerd: de Same Origin Policy staat het lezen van de externe bron op https://api.coinmarketcap.com/v1/ticker/ niet toe. (Reden: CORS-header ‘Access-Control-Allow-Origin’ ontbreekt).
-
-
 ### Resource
 - https://developer.mozilla.org/nl/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest
 - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function
 - https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin
 -https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
+
 # To do
-1. Create an issue for Leonie
-2. Create an issue for Kevin
-3. create responsive menu
-4. Best practices
-5. Manage routes en states
-6. Get / Post data van/naar API
-7. Data manipuleren
-8. Data presenteren
-9. Web Worker implementeren (extra)
-10. Code review
-
-
+- add a favorite list
+- call api every 10 min
 
