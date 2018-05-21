@@ -144,7 +144,7 @@ Essentially, a promise is a returned object to which you attach callbacks, inste
 - https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Access-Control-Allow-Origin
 -https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
 
-# To do
-- add a favorite list
-- call api every 10 min
+# Wishlist
+- Create a watchlist for favorite coin
+- call API every 10 min
 

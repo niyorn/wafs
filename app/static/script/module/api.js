@@ -12,7 +12,7 @@
                 xhr.open("GET", url, true); //create a async request
                 xhr.onload = function () {
                     if (xhr.readyState === 4) {
-                        if (xhr.status === 200) { //change hereree
+                        if (xhr.status === 200) { //change here
                             resolve(xhr.responseText);
                         } else {
                             reject({
