@@ -1,5 +1,6 @@
 import {section} from './section.js';
-import {api} from './api.js'
+import {api} from './api.js';
+import {helper} from './helper.js';
 
 var routes = {
     init() {
