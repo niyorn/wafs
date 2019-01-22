@@ -226,7 +226,13 @@ section div span {
 
 @media (min-width: 70em) {
     .price {
-        font-size: 0.4em;
+        font-size: 0.5em;
+    }
+}
+
+@media (min-width: 90em) {
+    .price {
+        font-size: 0.3em;
     }
 }
 
